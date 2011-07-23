@@ -7,7 +7,7 @@
     <name>Neo4j OSGi Example Application</name>
     <groupId>de.deepamehta</groupId>
     <artifactId>neo4j-osgi-example-app</artifactId>
-    <version>0.3</version>
+    <version>0.4</version>
     <packaging>bundle</packaging>
 
     <properties>
@@ -46,12 +46,9 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <!-- Build Neo4j Super Bundle -->
-                        <!-- Note: <_exportcontents> is used instead of <Export-Package> -->
-                        <!-- to suppress additional inlining of embedded jars            -->
+                        <!-- Build Super Bundle (by inlining all dependencies) -->
                         <Import-Package>!javax.transaction.*,!com.sun.*,!sun.misc.*,!org.junit.*,!junit.*,*;</Import-Package>
-                        <_exportcontents>org.neo4j.*;version="1.4",*</_exportcontents>
-                        <Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
+                        <Embed-Dependency>*;scope=compile|runtime;inline=true</Embed-Dependency>
                         <Embed-Transitive>true</Embed-Transitive>
                         <!-- Application Activator -->
                         <Export-Package>de.deepamehta.neo4j</Export-Package>

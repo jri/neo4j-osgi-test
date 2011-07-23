@@ -31,9 +31,16 @@ Scenario 3
     git checkout 0.3
     mvn clean install pax:run
 
+Scenario 4
+
+    git checkout 0.4
+    mvn clean install pax:run
+
 
 Version History
 ===============
+
+**0.4** - One super bundle with inlined dependencies.
 
 **0.3** - Activator and all neo packages in one bundle again, but in a proper one
           (additional inlining of embedded jars suppressed).
