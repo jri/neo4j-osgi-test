@@ -4,10 +4,10 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <name>Neo4j OSGi Test</name>
+    <name>Neo4j OSGi Example Application</name>
     <groupId>de.deepamehta</groupId>
-    <artifactId>neo4j-osgi-test</artifactId>
-    <version>0.1</version>
+    <artifactId>neo4j-osgi-example-app</artifactId>
+    <version>0.2</version>
     <packaging>bundle</packaging>
 
     <properties>
@@ -17,13 +17,9 @@
     <dependencies>
         <dependency>
             <groupId>org.neo4j</groupId>
-            <artifactId>neo4j-kernel</artifactId>
-            <version>1.4</version>
-        </dependency>
-        <dependency>
-            <groupId>org.neo4j</groupId>
-            <artifactId>neo4j-lucene-index</artifactId>
-            <version>1.4</version>
+            <artifactId>neo4j-osgi-bundle</artifactId>
+            <version>0.1-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.osgi</groupId>
@@ -51,11 +47,8 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
+                        <Export-Package>de.deepamehta.neo4j</Export-Package>
                         <Bundle-Activator>de.deepamehta.neo4j.Activator</Bundle-Activator>
-                        <Import-Package>!javax.transaction.*,!com.sun.*,!sun.misc.*,!org.junit.*,!junit.*,*;</Import-Package>
-                        <Export-Package>org.neo4j.*;version="1.4",*</Export-Package>
-                        <Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
-                        <Embed-Transitive>true</Embed-Transitive>
                     </instructions>
                 </configuration>
             </plugin>
@@ -64,10 +57,6 @@
                 <artifactId>maven-pax-plugin</artifactId>
                 <version>1.4</version>
                 <configuration>
-                    <noDependencies>true</noDependencies>
-                    <deployURLs>
-                        mvn:de.deepamehta/neo4j-osgi-test/0.1
-                    </deployURLs>
                     <runner>1.7.4</runner>
                 </configuration>
             </plugin>
