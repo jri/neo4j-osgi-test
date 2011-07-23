@@ -7,7 +7,7 @@
     <name>Neo4j OSGi Example Application</name>
     <groupId>de.deepamehta</groupId>
     <artifactId>neo4j-osgi-example-app</artifactId>
-    <version>0.2</version>
+    <version>0.3</version>
     <packaging>bundle</packaging>
 
     <properties>
@@ -17,9 +17,8 @@
     <dependencies>
         <dependency>
             <groupId>org.neo4j</groupId>
-            <artifactId>neo4j-osgi-bundle</artifactId>
-            <version>0.1-SNAPSHOT</version>
-            <scope>provided</scope>
+            <artifactId>neo4j</artifactId>
+            <version>1.4</version>
         </dependency>
         <dependency>
             <groupId>org.osgi</groupId>
@@ -47,6 +46,14 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
+                        <!-- Build Neo4j Super Bundle -->
+                        <!-- Note: <_exportcontents> is used instead of <Export-Package> -->
+                        <!-- to suppress additional inlining of embedded jars            -->
+                        <Import-Package>!javax.transaction.*,!com.sun.*,!sun.misc.*,!org.junit.*,!junit.*,*;</Import-Package>
+                        <_exportcontents>org.neo4j.*;version="1.4",*</_exportcontents>
+                        <Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
+                        <Embed-Transitive>true</Embed-Transitive>
+                        <!-- Application Activator -->
                         <Export-Package>de.deepamehta.neo4j</Export-Package>
                         <Bundle-Activator>de.deepamehta.neo4j.Activator</Bundle-Activator>
                     </instructions>
@@ -57,6 +64,9 @@
                 <artifactId>maven-pax-plugin</artifactId>
                 <version>1.4</version>
                 <configuration>
+                    <!-- Don't deploy this project's dependencies as bundles.      -->
+                    <!-- Only deploy this project (by default) - the super-bundle. -->
+                    <noDependencies>true</noDependencies>
                     <runner>1.7.4</runner>
                 </configuration>
             </plugin>
