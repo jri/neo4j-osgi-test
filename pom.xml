@@ -17,8 +17,15 @@
     <dependencies>
         <dependency>
             <groupId>org.neo4j</groupId>
+            <artifactId>neo4j-osgi-bundle</artifactId>
+            <version>0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.neo4j</groupId>
             <artifactId>neo4j</artifactId>
-            <version>1.4</version>
+            <version>1.5-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.osgi</groupId>
@@ -46,11 +53,6 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <!-- Build Super Bundle (by inlining all dependencies) -->
-                        <Import-Package>!javax.transaction.*,!com.sun.*,!sun.misc.*,!org.junit.*,!junit.*,*;</Import-Package>
-                        <Embed-Dependency>*;scope=compile|runtime;inline=true</Embed-Dependency>
-                        <Embed-Transitive>true</Embed-Transitive>
-                        <!-- Application Activator -->
                         <Export-Package>de.deepamehta.neo4j</Export-Package>
                         <Bundle-Activator>de.deepamehta.neo4j.Activator</Bundle-Activator>
                     </instructions>
@@ -58,12 +60,9 @@
             </plugin>
             <plugin>
                 <groupId>org.ops4j</groupId>
-                <artifactId>maven-pax-plugin</artifactId>
+                <artifactId>maven-pax-plugin</artifactId>                
                 <version>1.4</version>
                 <configuration>
-                    <!-- Don't deploy this project's dependencies as bundles.      -->
-                    <!-- Only deploy this project (by default) - the super-bundle. -->
-                    <noDependencies>true</noDependencies>
                     <runner>1.7.4</runner>
                 </configuration>
             </plugin>
