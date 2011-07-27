@@ -7,7 +7,7 @@
     <name>Neo4j OSGi Example Application</name>
     <groupId>de.deepamehta</groupId>
     <artifactId>neo4j-osgi-example-app</artifactId>
-    <version>0.4</version>
+    <version>0.5</version>
     <packaging>bundle</packaging>
 
     <properties>
@@ -20,12 +20,6 @@
             <artifactId>neo4j-osgi-bundle</artifactId>
             <version>0.1-SNAPSHOT</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.neo4j</groupId>
-            <artifactId>neo4j</artifactId>
-            <version>1.5-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.osgi</groupId>
@@ -60,7 +54,7 @@
             </plugin>
             <plugin>
                 <groupId>org.ops4j</groupId>
-                <artifactId>maven-pax-plugin</artifactId>                
+                <artifactId>maven-pax-plugin</artifactId>
                 <version>1.4</version>
                 <configuration>
                     <runner>1.7.4</runner>

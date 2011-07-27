@@ -1,3 +1,6 @@
-.DS_Store
 runner
 target
+
+.DS_Store
+*.tmproj
+commit-message.txt

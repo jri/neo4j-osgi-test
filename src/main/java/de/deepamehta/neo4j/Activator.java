@@ -24,6 +24,7 @@ public class Activator implements BundleActivator {
         logger.info("========== Starting Neo4j OSGi Test ==========");
         neo4j = new EmbeddedGraphDatabase("test-db-" + System.currentTimeMillis());
         Index<Node> index = neo4j.index().forNodes("exact");
+        logger.info("Lucene index successfully created!");
     }
 
     @Override
