@@ -4,7 +4,7 @@ Neo4j 1.8 OSGi Test / Pax Runner
 
 This demo project shows that a Java-embedded Neo4j 1.8 instance -- in particular its Lucene Index component -- can run in an OSGi environment.
 
-The history so far:
+The story so far:
 
 - Neo4j 1.2 in conjunction with its "old" index API was the last version which runs in an OSGi environment. Neo4j's new index API is based on service lookup (Java ServiceLoader) which doesn't work with OSGi.
 
@@ -88,7 +88,7 @@ Neo4j/OSGi tests performed
 
 **0.6** - Test with Neo4j 1.8 => SUCCESS!
 
-Older tests with Neo4j 1.5:
+Older tests with Neo4j 1.4 and 1.5-SNAPSHOT:
 
 **0.5** - Activator in separate bundle. => SUCCESS!  
           Provided the `bundle-friendly-classloader` branch of Neo4j 1.5-SNAPSHOT is installed
