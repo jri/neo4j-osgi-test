@@ -27,7 +27,7 @@ You can do so by ensuring `geronimo-jta_1.1_spec` is listed before `neo4j-kernel
         <param>--autoWrap</param>
     </provision>
 
-Alternatively you can set explicit OSGi start levels by appending **`@n`** to a provision command.  
+Alternatively you can set explicit OSGi start levels by appending `@n` to a provision command.  
 The start level of `geronimo-jta_1.1_spec` must be lower than the `neo4j-kernel` ones.
 
     <provision>
@@ -37,7 +37,7 @@ The start level of `geronimo-jta_1.1_spec` must be lower than the `neo4j-kernel`
         <param>--autoWrap</param>
     </provision>
 
-Here, `4` is explicitly set for `geronimo-jta_1.1_spec`. Pax Runners's default start level is `5`.
+Here, start level `4` is explicitly set for `geronimo-jta_1.1_spec`. Pax Runners's default start level is `5`.
 
 If, on the other hand, `geronimo-jta_1.1_spec` is activated *after* `neo4j-kernel` an error occurs:
 
