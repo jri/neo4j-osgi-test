@@ -4,10 +4,10 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <name>Neo4j OSGi Example Application</name>
+    <name>Neo4j 1.8 OSGi Test</name>
     <groupId>de.deepamehta</groupId>
-    <artifactId>neo4j-osgi-example-app</artifactId>
-    <version>0.5</version>
+    <artifactId>neo4j-1.8-osgi-test</artifactId>
+    <version>0.6</version>
     <packaging>bundle</packaging>
 
     <properties>
@@ -17,9 +17,13 @@
     <dependencies>
         <dependency>
             <groupId>org.neo4j</groupId>
-            <artifactId>neo4j-osgi-bundle</artifactId>
-            <version>0.1-SNAPSHOT</version>
-            <scope>provided</scope>
+            <artifactId>neo4j-kernel</artifactId>
+            <version>1.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.neo4j</groupId>
+            <artifactId>neo4j-lucene-index</artifactId>
+            <version>1.8</version>
         </dependency>
         <dependency>
             <groupId>org.osgi</groupId>
@@ -34,7 +38,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>2.5.1</version>
                 <configuration>
                     <source>1.6</source>
                     <target>1.6</target>
@@ -43,11 +47,10 @@
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
-                <version>1.4.0</version>
+                <version>2.3.7</version>
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <Export-Package>de.deepamehta.neo4j</Export-Package>
                         <Bundle-Activator>de.deepamehta.neo4j.Activator</Bundle-Activator>
                     </instructions>
                 </configuration>
@@ -58,6 +61,17 @@
                 <version>1.4</version>
                 <configuration>
                     <runner>1.7.4</runner>
+                    <!-- Don't deploy this project's dependencies as bundles.    -->
+                    <!-- The Neo4j libraries must be auto-wrapped into a bundle. -->
+                    <noDependencies>true</noDependencies>
+                    <provision>
+                        <!-- geronimo-jta_1.1_spec must be listed before neo4j-kernel -->
+                        <param>mvn:org.apache.geronimo.specs/geronimo-jta_1.1_spec/1.1.1</param>
+                        <param>mvn:org.apache.lucene/lucene-core/3.5.0</param>
+                        <param>mvn:org.neo4j/neo4j-kernel/1.8</param>
+                        <param>mvn:org.neo4j/neo4j-lucene-index/1.8</param>
+                        <param>--autoWrap</param>
+                    </provision>
                 </configuration>
             </plugin>
         </plugins>
